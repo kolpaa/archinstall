@@ -1,0 +1,16 @@
+#!/bin/bash
+
+Bitcoin(){
+  if ping -c 1 google.com >> /dev/null 2>&1;
+        then
+        printf `coinmon -t 1 | awk '{print $6}' | head -n7 | tail -n1 | awk -F"." '{print $1}'
+ `
+        else
+        printf "00000"
+        fi
+}
+
+while true; do
+  echo "`Bitcoin`" > ~/archinstall/res/temp_price
+  sleep 50
+done &

@@ -1,0 +1,55 @@
+#!/bin/bash
+
+Day() {
+  printf `date "+%e" | sed -e 's/\ //'`
+
+  case `date +%d` in
+    1|21|31) printf "${day}st";;
+    2|22)    printf "${day}nd";;
+    3|23)    printf "${day}rd";;
+    *)       printf "${day}th";;
+  esac
+}
+
+Battery() {
+  dir=/sys/class/power_supply/BAT0
+
+  #grep -q ^C "${dir}"/status && printf +
+  printf  `cat ${dir}/capacity`
+}
+
+Bitcoin(){
+  exec < ~/archinstall/res/temp_price
+  read coin
+  printf "$coin"
+}
+
+Volume(){
+	VAR2=$(printf `pactl list sinks | grep '^[[:space:]]Volume:' | \
+    head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'`)
+
+	while  [[ $VAR2 = "" ]]
+		do	
+			sleep 0.5 &&
+			VAR2=$(printf `pactl list sinks | grep '^[[:space:]]Volume:' | \
+    head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'`)
+		done
+	printf $VAR2
+}
+
+Layout(){
+	VAR=$(xset -q | grep LED | awk '{ print $10 }')
+
+	if [[ "$VAR" -eq "00000000" ]]
+	then
+        printf us
+	else
+        printf ru
+	fi
+}
+
+nm-applet &
+while true; do
+  xsetroot -name " `date \"+%a, %b \`Day\` %k:%M\"` |  `Battery`% |  `Bitcoin`$ |  `Volume`% | `Layout` "
+  sleep 50
+done &
