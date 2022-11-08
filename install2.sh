@@ -22,7 +22,7 @@ grub-install &&
 grub-mkconfig -o /boot/grub/grub.cfg &&
 pacman -S archlinux-keyring --noconfirm &&
 #pacman -Syyu gnome gnome-tweaks gnome-shell-extensions qt5ct kvantum firefox base-devel git &&
-#pacman -Syyu tumbler network-manager-applet lxappearance file-roller gvfs mpv nm-connection-editor mousepad dunst flameshot unzip openssh go git base-devel feh firefox rofi kitty xorg xorg-xinit polkit xdg-user-dirs thunar nautilus polkit-gnome pipewire pipewire-pulse pipewire-alsa pipewire-jack bluez bluez-utils blueman keepassxc kvantum qt5ct slock qbittorrent telegram-desktop electrum fceux cmus rhythmbox ttf-font-awesome  xss-lock xclip picom &&
+#pacman -Syyu tlp tumbler network-manager-applet lxappearance file-roller gvfs mpv nm-connection-editor mousepad dunst flameshot unzip openssh go git base-devel feh firefox rofi kitty xorg xorg-xinit polkit xdg-user-dirs thunar nautilus polkit-gnome pipewire pipewire-pulse pipewire-alsa pipewire-jack bluez bluez-utils blueman keepassxc kvantum qt5ct slock qbittorrent telegram-desktop electrum fceux cmus rhythmbox ttf-font-awesome  xss-lock xclip picom &&
 #pacman -Syyu firefox base-devel git xorg plasma kwrite konsole dolphin okular 
 systemctl enable NetworkManager &&
 
