@@ -18,7 +18,7 @@ mount --mkdir ${DISK}p1 /mnt/boot/efi &&
 
 #pacstrap /mnt base linux linux-firmware base-devel git sudo vim gnome grub efibootmgr intel-ucode #firefox opessh networkmanager gnome &&
 
-pacstrap /mnt base linux linux-firmware sudo vim grub efibootmgr intel-ucode networkmanager &&
+pacstrap /mnt base linux linux-firmware sudo nvim grub efibootmgr intel-ucode networkmanager &&
 
 cp ./install2.sh /mnt &&
 genfstab -U /mnt >> /mnt/etc/fstab &&
